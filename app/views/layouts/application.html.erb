@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://kit.fontawesome.com/f9dc475c58.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+        <header>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+              <%= link_to "Bookers", root_path,class:"navbar-brand" %>
+
+              <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                <li>
+                  <%= link_to user_path(current_user.id),class:"navbar-brand" do %>
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    Home
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to users_path,class:"navbar-brand" do %>
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    Users
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to books_path,class:"navbar-brand" do %>
+                    <i class="fas fa-book-open" aria-hidden="true"></i>
+                    Books
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete,class:"navbar-brand" do%>
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                    Log out
+                  <% end %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to root_path,class:"navbar-brand" do %>
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    Home
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to home_about_path,class:"navbar-brand" do %>
+                    <i class="fas fa-link" aria-hidden="true"></i>
+                    About
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_registration_path,class:"navbar-brand" do %>
+                    <i class="fas fa-user-plus" aria-hidden="true"></i>
+                    Sign up
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_session_path,class:"navbar-brand" do %>
+                    <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                     Log in
+                  <% end %>
+                </li>
+              </ul>
+              <% end %>
+            </div>
+          </nav>
+        </header>
+        <%= yield %>
+  </body>
+
+  <footer>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>
