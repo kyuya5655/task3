@@ -1,3 +1,12 @@
+<% if @book.errors.any? %>
+   <ul>
+    <li><%= @book.errors.count%>error prohibited this book from being saved:</li>
+        <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+   </ul>
+   <% end %>
+
 <div class="container px-5 px-sm-0">
 
   <div class="row">
@@ -22,7 +31,7 @@
       <% @books.each do |book| %>
       <tbody>
        <tr>
-        <td><%= link_to user_path(book.user.id) do %>
+        <td><%= link_to user_path(book.user_id) do %>
              <%= image_tag book.user.get_profile_image(100,100) %>
             <% end %>
         </td>
